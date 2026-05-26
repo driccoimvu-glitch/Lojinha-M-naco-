@@ -14,126 +14,187 @@
         .secao { margin-bottom: 4rem; }
         .secao h2 { color: #00f5d4; text-align: center; margin-bottom: 2rem; font-size: 1.8rem; border-bottom: 1px solid #00f5d433; padding-bottom: 0.5rem; }
         .produtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .card { background-color: #1a1a2e; border: 1px solid #00f5d433; border-radius: 12px; padding: 1.5rem; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+        .card { background-color: #1a1a2e; border: 1px solid #00f5d433; border-radius: 12px; padding: 1.5rem; text-align: center; transition: transform 0.3s, box-shadow 0.3s; overflow: hidden; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px #00f5d422; }
-        .card h3 { color: #00f5d4; margin-bottom: 1rem; font-size: 1.3rem; }
-        .card .desc { margin-bottom: 1rem; font-size: 0.95rem; opacity: 0.8; min-height: 60px; }
+        .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #00f5d455; }
+        .card h3 { color: #00f5d4; margin-bottom: 0.8rem; font-size: 1.2rem; }
+        .card .desc { margin-bottom: 1rem; font-size: 0.9rem; opacity: 0.8; min-height: 50px; }
         .card .preco { font-size: 1.4rem; font-weight: bold; color: #00ff9d; margin-bottom: 1.2rem; }
         .btn { display: inline-block; padding: 0.7rem 1.8rem; background-color: #00f5d4; color: #000; font-weight: 600; border-radius: 8px; text-decoration: none; transition: background 0.3s; border: none; cursor: pointer; font-size: 1rem; }
         .btn:hover { background-color: #00c4a7; }
         .garantia { background-color: #16213e; text-align: center; padding: 2rem; margin: 3rem 0; border-radius: 12px; border: 1px solid #00f5d455; }
         .garantia h2 { color: #00f5d4; margin-bottom: 1rem; }
         .contato { background-color: #1a1a2e; padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid #00f5d433; }
-        .contato p { margin-bottom: 1rem; font-size: 1.1rem; }
         footer { text-align: center; padding: 1.5rem; background-color: #0a0a12; font-size: 0.9rem; opacity: 0.7; margin-top: 3rem; }
     </style>
 </head>
 <body>
     <header>
         <h1>LOJINHA DO DRICCO</h1>
-        <p>AVK • IMVU • SEGUIDORES | Entrega Rápida e Garantida ✅</p>
+        <p>AVK • IMVU • SEGUIDORES | 🚨 PREÇOS MAIS BAIXOS DO BRASIL 🚨</p>
     </header>
 
     <div class="container">
         <div class="garantia">
             <h2>🔒 SITE 100% SEGURO E CONFIÁVEL</h2>
-            <p>Não é golpe! Entregamos tudo na hora, com suporte e garantia. Sua confiança é nosso maior valor.</p>
-            <p>Entrega automática ou em até 5 minutos | Suporte via WhatsApp 24h</p>
+            <p>Não é golpe! Entregamos tudo na hora, com suporte e garantia. Tudo mais barato que na loja oficial!</p>
+            <p>Entrega automática ou em até 5 minutos | Preços de R$0,99 a R$9,90 🤑</p>
         </div>
 
 
-        <!-- ✅ SEÇÃO AVK -->
+        <!-- ✅ AQUI ESTÃO TODOS OS ITENS DO AVK -->
         <section class="secao" id="avk">
-            <h2>🎮 AVK - Itens, Contas e Moedas</h2>
+            <h2>🎮 AVK • Todos os Itens do Jogo</h2>
             <div class="produtos">
+
+                <!-- 👕 ROUPAS -->
                 <div class="card">
-                    <h3>Moedas AVK</h3>
-                    <p class="desc">Pacotes de moedas para comprar tudo o que quiser no jogo. Entrega na hora.</p>
-                    <div class="preco">R$ 15,00</div>
-                    <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn">Comprar Agora</a>
+                    <img src="https://i.imgur.com/7ZbX8Qy.jpg" alt="Conjunto de Roupa AVK">
+                    <h3>👕 Conjunto Completo Roupa</h3>
+                    <p class="desc">Calça, camisa, jaqueta, luva, bota — todos os estilos e cores.</p>
+                    <div class="preco">R$ 3,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
                 </div>
+
+                <!-- 💃 ANIMAÇÕES -->
                 <div class="card">
-                    <h3>Contas Prontas</h3>
-                    <p class="desc">Contas com nível alto, itens raros e muito dinheiro. Pronto para jogar.</p>
-                    <div class="preco">R$ 50,00</div>
-                    <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn">Comprar Agora</a>
+                    <img src="https://i.imgur.com/3xR2wL9.jpg" alt="Animação AVK">
+                    <h3>💃 Kit 12 Animações</h3>
+                    <p class="desc">Danças, saudações, pulos, reações, gestos. Tudo que tem no jogo.</p>
+                    <div class="preco">R$ 2,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
                 </div>
+
+                <!-- 🪽 ASAS -->
                 <div class="card">
-                    <h3>Itens Raros</h3>
-                    <p class="desc">Roupas, armas, acessórios e veículos exclusivos que só tem aqui.</p>
-                    <div class="preco">R$ 25,00</div>
-                    <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn">Comprar Agora</a>
+                    <img src="https://i.imgur.com/9kL7sPz.jpg" alt="Asas AVK">
+                    <h3>🪽 Asas de Todos os Tipos</h3>
+                    <p class="desc">Asas brilhantes, de anjo, de demônio, coloridas, grandes e pequenas.</p>
+                    <div class="preco">R$ 4,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
                 </div>
+
+                <!-- 🏠 APARTAMENTOS E CASAS -->
+                <div class="card">
+                    <img src="https://i.imgur.com/2vN8bRc.jpg" alt="Apartamento AVK">
+                    <h3>🏠 Apartamentos e Casas</h3>
+                    <p class="desc">Kitnets, apartamentos, mansões, casas de campo, tudo decorado.</p>
+                    <div class="preco">R$ 5,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
+                </div>
+
+                <!-- 🚗 VEÍCULOS -->
+                <div class="card">
+                    <img src="https://i.imgur.com/8yW1qXb.jpg" alt="Veículo AVK">
+                    <h3>🚗 Carros, Motos e Aviões</h3>
+                    <p class="desc">Esportivos, clássicos, motos, barcos, tudo o que tem de veículo.</p>
+                    <div class="preco">R$ 4,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
+                </div>
+
+                <!-- 🪙 MOEDAS -->
+                <div class="card">
+                    <img src="https://i.imgur.com/1bC9sRw.jpg" alt="Moedas AVK">
+                    <h3>🪙 Pacotes de Moedas</h3>
+                    <p class="desc">10mil, 50mil, 100mil, 500mil. Entrega automática na conta.</p>
+                    <div class="preco">R$ 1,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
+                </div>
+
+                <!-- 🎩 ACESSÓRIOS -->
+                <div class="card">
+                    <img src="https://i.imgur.com/4mK3tVz.jpg" alt="Acessórios AVK">
+                    <h3>🎩 Kit Acessórios</h3>
+                    <p class="desc">Óculos, chapéus, relógios, colares, mochilas, brincos.</p>
+                    <div class="preco">R$ 1,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
+                </div>
+
+                <!-- ⚔️ ARMAS E ITENS RAROS -->
+                <div class="card">
+                    <img src="https://i.imgur.com/6pT4dVm.jpg" alt="Armas AVK">
+                    <h3>⚔️ Armas e Itens Raros</h3>
+                    <p class="desc">Espadas, armas de fogo, itens de evento, coisas que saíram da loja.</p>
+                    <div class="preco">R$ 7,90</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
+                </div>
+
             </div>
         </section>
 
 
-        <!-- ✅ SEÇÃO IMVU -->
+        <!-- ✅ IMVU -->
         <section class="secao" id="imvu">
-            <h2>👤 IMVU - Estilos, Créditos e Contas</h2>
+            <h2>👤 IMVU • Estilos e Mais</h2>
             <div class="produtos">
                 <div class="card">
-                    <h3>Créditos IMVU</h3>
-                    <p class="desc">Créditos baratos e seguros para você criar o seu visual perfeito. Entrega rápida.</p>
-                    <div class="preco">R$ 12,00</div>
-                    <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn">Comprar Agora</a>
+                    <img src="https://i.imgur.com/9zX7cQy.jpg" alt="Créditos IMVU">
+                    <h3>💳 Créditos</h3>
+                    <p class="desc">Pacotes de créditos baratos, entrega rápida.</p>
+                    <div class="preco">R$ 2,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
                 </div>
                 <div class="card">
-                    <h3>Visuais Prontos</h3>
-                    <p class="desc">Avatares completos, roupas, cabelos e animações exclusivas para você brilhar.</p>
-                    <div class="preco">R$ 30,00</div>
-                    <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn">Comprar Agora</a>
+                    <img src="https://i.imgur.com/2vN8bRc.jpg" alt="Visual IMVU">
+                    <h3>👗 Visuais Prontos</h3>
+                    <p class="desc">Avatares completos, roupas, cabelos e animações.</p>
+                    <div class="preco">R$ 4,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
                 </div>
                 <div class="card">
-                    <h3>Contas VIP</h3>
-                    <p class="desc">Contas com anos de uso, selos, salas exclusivas e nível máximo. Muito estilo.</p>
-                    <div class="preco">R$ 80,00</div>
-                    <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn">Comprar Agora</a>
+                    <img src="https://i.imgur.com/7ZbX8Qy.jpg" alt="Conta IMVU">
+                    <h3>👑 Contas VIP</h3>
+                    <p class="desc">Contas antigas, selos, salas exclusivas.</p>
+                    <div class="preco">R$ 9,90</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
                 </div>
             </div>
         </section>
 
 
-        <!-- ✅ SEÇÃO SEGUIDORES -->
+        <!-- ✅ SEGUIDORES -->
         <section class="secao" id="seguidores">
-            <h2>📈 Seguidores, Curtidas e Visualizações</h2>
+            <h2>📈 Seguidores e Curtidas</h2>
             <div class="produtos">
                 <div class="card">
-                    <h3>Seguidores Instagram</h3>
-                    <p class="desc">Seguidores reais e ativos, sem queda, para aumentar sua autoridade e alcance.</p>
-                    <div class="preco">R$ 10,00</div>
-                    <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn">Comprar Agora</a>
+                    <img src="https://i.imgur.com/3xR2wL9.jpg" alt="Seguidores Instagram">
+                    <h3>🤝 Seguidores Reais</h3>
+                    <p class="desc">100, 500, 1000 seguidores, sem queda.</p>
+                    <div class="preco">R$ 1,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
                 </div>
                 <div class="card">
-                    <h3>Curtidas e Comentários</h3>
-                    <p class="desc">Deixe suas fotos e vídeos cheios de curtidas e comentários positivos.</p>
-                    <div class="preco">R$ 8,00</div>
-                    <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn">Comprar Agora</a>
+                    <img src="https://i.imgur.com/8yW1qXb.jpg" alt="Curtidas">
+                    <h3>❤️ Curtidas e Comentários</h3>
+                    <p class="desc">Para fotos, vídeos e reels. Rápido e seguro.</p>
+                    <div class="preco">R$ 0,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
                 </div>
                 <div class="card">
-                    <h3>Visualizações</h3>
-                    <p class="desc">Aumente as visualizações dos seus vídeos e histórias rapidamente.</p>
-                    <div class="preco">R$ 5,00</div>
-                    <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn">Comprar Agora</a>
+                    <img src="https://i.imgur.com/1bC9sRw.jpg" alt="Visualizações">
+                    <h3>👁️ Visualizações</h3>
+                    <p class="desc">Aumente o alcance dos seus vídeos agora.</p>
+                    <div class="preco">R$ 0,99</div>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn">Comprar Agora</a>
                 </div>
             </div>
         </section>
 
 
-        <!-- ✅ SEÇÃO CONTATO -->
+        <!-- ✅ CONTATO -->
         <section class="contato">
             <h2>📞 Atendimento</h2>
-            <p>Para pedidos, dúvidas ou suporte, clique abaixo e fale diretamente comigo no WhatsApp:</p>
-            <a href="https://wa.me/5511935012284" target="_blank" class="btn">Falar no WhatsApp</a>
-            <p style="margin-top: 1rem;">Atendimento: Segunda a Sábado - 08h às 22h</p>
+            <p>Para pedidos, dúvidas ou suporte, clique abaixo e fale comigo:</p>
+            <a href="https://wa.me/5511999999999" target="_blank" class="btn">Falar no WhatsApp</a>
+            <p style="margin-top: 1rem;">Atendimento: Todos os dias - 08h às 22h</p>
         </section>
 
     </div>
 
     <footer>
-        <p>© 2026 Lojinha do Dricco | Todos os direitos reservados • AVK • IMVU • Seguidores</p>
-        <p>Site 100% seguro e confiável - CNPJ/CPF: 00.000.000/0001-00</p>
+        <p>© 2026 Lojinha do Dricco | 🤑 PREÇOS MAIS BAIXOS DO MERCADO 🤑</p>
+        <p>Site 100% seguro e confiável</p>
     </footer>
 </body>
-                        </html>
+    </html>
                         
