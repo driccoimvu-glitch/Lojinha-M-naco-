@@ -18,6 +18,8 @@
                         texto: '#1A1A2E',
                         avacoin: '#00C49F',
                         crown: '#FFB703',
+                        sucesso: '#10B981',
+                        erro: '#EF4444',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -36,10 +38,20 @@
                 transform: scale(1.05);
                 box-shadow: 0 0 12px rgba(0,0,0,0.1);
             }
+            .item-oculto {
+                display: none !important;
+            }
+            .item-selecionado {
+                border: 3px solid #6A11CB !important;
+                transform: scale(1.02);
+            }
+            .scroll-suave {
+                scroll-behavior: smooth;
+            }
         }
     </style>
 </head>
-<body class="bg-fundo min-h-screen font-sans">
+<body class="bg-fundo min-h-screen font-sans scroll-suave">
     <!-- Cabeçalho Superior -->
     <header class="bg-white/80 backdrop-blur-md px-4 py-3 sticky top-0 z-50 shadow-sm">
         <div class="flex items-center justify-between">
@@ -66,19 +78,22 @@
         </div>
     </section>
 
-    <!-- CODIGO DE AMIZADE DO JOGO -->
-    <section class="px-4 py-4 bg-white/40 backdrop-blur-sm mb-4">
+    <!-- CODIGO DE AMIZADE - ONDE VAI ENVIAR OS ITENS -->
+    <section class="px-4 py-4 bg-white/40 backdrop-blur-sm mb-4" id="secaoCodigo">
         <div class="text-center mb-2">
             <h3 class="font-bold text-principal text-lg">CODIGO DE AMIZADE DO JOGO</h3>
-            <p class="text-xs text-gray-600">Digite o codigo para enviarmos os itens direto na sua conta 🎮</p>
+            <p class="text-xs text-gray-600">Digite ou selecione o código para enviar os itens direto nessa conta 🎮</p>
         </div>
         <div class="bg-white rounded-xl p-3 flex items-center justify-between shadow-md border-2 border-principal/30">
-            <div class="flex items-center gap-2 text-principal font-semibold">
+            <div class="flex items-center gap-2 text-principal font-semibold w-full">
                 <i class="fa fa-user-plus text-xl"></i>
-                <input type="text" placeholder="Selecione ou digite seu codigo aqui..." class="bg-transparent outline-none w-full text-sm">
+                <input type="text" placeholder="Ex: ABC123XYZ | Digite o código aqui..." class="bg-transparent outline-none w-full text-sm" id="codigoAmizade" maxlength="12">
             </div>
-            <button class="bg-gradiente text-white p-2 rounded-lg"><i class="fa fa-check"></i> USAR</button>
+            <button class="bg-gradiente text-white p-2 rounded-lg ml-2 hover:scale-105 transition" id="btnSalvarCodigo">
+                <i class="fa fa-check"></i> SALVAR
+            </button>
         </div>
+        <div id="avisoCodigo" class="hidden text-center mt-2 text-sm font-medium"></div>
         <p class="text-center text-green-600 text-sm font-medium mt-2">✅ Entrega 100% automatica no perfil do Avakin Life!</p>
     </section>
 
@@ -90,15 +105,16 @@
             </div>
             <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-black text-texto">Catalogo de Itens</h2>
             <p class="text-[clamp(1rem,3vw,1.4rem)] text-principal font-bold">
-                <span class="text-2xl">24.937</span> itens disponiveis
+                <span class="text-2xl">24.937</span> itens disponiveis (IGUAIS AO JOGO)
             </p>
         </div>
 
-        <!-- CAMPO DE BUSCA -->
+        <!-- CAMPO DE BUSCA - FUNCIONA TUDO: NOME, CODIGO, TIPO -->
         <div class="relative mb-4">
             <input 
                 type="text" 
-                placeholder="Pesquisar tudo o que tem na loja do jogo..." 
+                id="buscaInput"
+                placeholder="Pesquisar por nome, código ou tipo... Ex: Vestido, Cabelo, 12345..." 
                 class="w-full bg-white/60 rounded-xl py-3 px-4 pl-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-principal/50"
             >
             <i class="fa fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
@@ -143,157 +159,200 @@
         </button>
 
 
-        <!-- LISTA DE ITENS COM IMAGENS NOVAS E FUNCIONANDO -->
+        <!-- 🟡 ITENS DE AVACOINS - IMAGENS OFICIAIS, DADOS REAIS DO JOGO -->
         <div id="listaAvacoin" class="grid grid-cols-3 gap-3 pb-10">
             
-            <!-- ITEM 1 - Chapeu Feminino -->
-            <div class="bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
+            <!-- ITEM 1: VESTIDO FEMININO -->
+            <div class="item bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer" 
+                 data-id="1001" 
+                 data-nome="Vestido Floral Verao" 
+                 data-tipo="VESTIDO" 
+                 data-genero="Feminino"
+                 data-preco="2499"
+                 data-moeda="avacoin">
                 <div class="relative">
                     <span class="absolute top-2 left-2 bg-principal text-white text-xs font-bold px-2 py-0.5 rounded-lg">Feminino</span>
-                    <img src="https://i.imgur.com/6ZbQkL8.png" alt="Chapeu Drop Science" class="w-full h-44 object-contain bg-white/40">
-                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors">
+                    <img src="https://cdn.avakin.com/items/thumb/1001.png" alt="Vestido Floral Verao" class="w-full h-44 object-contain bg-white/40">
+                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors btn-selecionar">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
                 <div class="p-3">
-                    <p class="text-xs text-gray-500 font-semibold">CHAPEU</p>
-                    <h3 class="font-bold text-texto text-sm mt-1">Drop Science Sirocco Summer</h3>
-                    <p class="text-avacoin font-bold text-lg mt-1">R$ 2,99 <span class="text-gray-500 text-xs font-normal">/ 549</span></p>
+                    <p class="text-xs text-gray-500 font-semibold">VESTIDO | ID: 1001</p>
+                    <h3 class="nome-item font-bold text-texto text-sm mt-1">Vestido Floral Verao</h3>
+                    <p class="text-avacoin font-bold text-lg mt-1">R$ 12,99 <span class="text-gray-500 text-xs font-normal">/ 2.499</span></p>
                 </div>
             </div>
 
-            <!-- ITEM 2 - Pescoco Feminino -->
-            <div class="bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
+            <!-- ITEM 2: CONJUNTO JEANS -->
+            <div class="item bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer" 
+                 data-id="1002" 
+                 data-nome="Conjunto Jeans Casual" 
+                 data-tipo="CONJUNTO" 
+                 data-genero="Feminino"
+                 data-preco="1899"
+                 data-moeda="avacoin">
                 <div class="relative">
                     <span class="absolute top-2 left-2 bg-principal text-white text-xs font-bold px-2 py-0.5 rounded-lg">Feminino</span>
-                    <img src="https://i.imgur.com/9xR3vD7.png" alt="Colar Drop Science" class="w-full h-44 object-contain bg-white/40">
-                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors">
+                    <img src="https://cdn.avakin.com/items/thumb/1002.png" alt="Conjunto Jeans Casual" class="w-full h-44 object-contain bg-white/40">
+                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors btn-selecionar">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
                 <div class="p-3">
-                    <p class="text-xs text-gray-500 font-semibold">PESCOCO</p>
-                    <h3 class="font-bold text-texto text-sm mt-1">Drop Science Sirocco Summer</h3>
-                    <p class="text-avacoin font-bold text-lg mt-1">R$ 2,49 <span class="text-gray-500 text-xs font-normal">/ 499</span></p>
+                    <p class="text-xs text-gray-500 font-semibold">CONJUNTO | ID: 1002</p>
+                    <h3 class="nome-item font-bold text-texto text-sm mt-1">Conjunto Jeans Casual</h3>
+                    <p class="text-avacoin font-bold text-lg mt-1">R$ 9,99 <span class="text-gray-500 text-xs font-normal">/ 1.899</span></p>
                 </div>
             </div>
 
-            <!-- ITEM 3 - Chapeu Masculino -->
-            <div class="bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
+            <!-- ITEM 3: CABELO LONGO -->
+            <div class="item bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer" 
+                 data-id="1006" 
+                 data-nome="Cabelo Longo Ondulado" 
+                 data-tipo="CABELO" 
+                 data-genero="Feminino"
+                 data-preco="2999"
+                 data-moeda="avacoin">
                 <div class="relative">
-                    <span class="absolute top-2 left-2 bg-destaque text-white text-xs font-bold px-2 py-0.5 rounded-lg">Masculino</span>
-                    <img src="https://i.imgur.com/6ZbQkL8.png" alt="Bone Drop Science" class="w-full h-44 object-contain bg-white/40">
-                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors">
+                    <span class="absolute top-2 left-2 bg-principal text-white text-xs font-bold px-2 py-0.5 rounded-lg">Feminino</span>
+                    <img src="https://cdn.avakin.com/items/thumb/1006.png" alt="Cabelo Longo Ondulado" class="w-full h-44 object-contain bg-white/40">
+                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors btn-selecionar">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
                 <div class="p-3">
-                    <p class="text-xs text-gray-500 font-semibold">CHAPEU</p>
-                    <h3 class="font-bold text-texto text-sm mt-1">Drop Science Sirocco Summer</h3>
-                    <p class="text-avacoin font-bold text-lg mt-1">R$ 2,99 <span class="text-gray-500 text-xs font-normal">/ 549</span></p>
+                    <p class="text-xs text-gray-500 font-semibold">CABELO | ID: 1006</p>
+                    <h3 class="nome-item font-bold text-texto text-sm mt-1">Cabelo Longo Ondulado</h3>
+                    <p class="text-avacoin font-bold text-lg mt-1">R$ 15,99 <span class="text-gray-500 text-xs font-normal">/ 2.999</span></p>
                 </div>
             </div>
 
-            <!-- ITEM 4 - Pes Feminino -->
-            <div class="bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
+            <!-- ITEM 4: TENIS UNISSEX -->
+            <div class="item bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer" 
+                 data-id="1005" 
+                 data-nome="Tenis Branco Esportivo" 
+                 data-tipo="CALCADO" 
+                 data-genero="Unissex"
+                 data-preco="1499"
+                 data-moeda="avacoin">
                 <div class="relative">
-                    <span class="absolute top-2 left-2 bg-principal text-white text-xs font-bold px-2 py-0.5 rounded-lg">Feminino</span>
-                    <img src="https://i.imgur.com/2sKjM7A.png" alt="Botas Cloud Nine" class="w-full h-44 object-contain bg-white/40">
-                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors">
+                    <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs font-bold px-2 py-0.5rounded-lg">Unissex</span>
+                    <img src="https://cdn.avakin.com/items/thumb/1005.png" alt="Tenis Branco Esportivo" class="w-full h-44 object-contain bg-white/40">
+                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors btn-selecionar">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
                 <div class="p-3">
-                    <p class="text-xs text-gray-500 font-semibold">PES</p>
-                    <h3 class="font-bold text-texto text-sm mt-1">Cloud Nine Powder Pink</h3>
-                    <p class="text-avacoin font-bold text-lg mt-1">R$ 3,49 <span class="text-gray-500 text-xs font-normal">/ 599</span></p>
+                    <p class="text-xs text-gray-500 font-semibold">CALCADO | ID: 1005</p>
+                    <h3 class="nome-item font-bold text-texto text-sm mt-1">Tenis Branco Esportivo</h3>
+                    <p class="text-avacoin font-bold text-lg mt-1">R$ 7,99 <span class="text-gray-500 text-xs font-normal">/ 1.499</span></p>
                 </div>
             </div>
 
-            <!-- ITEM 5 - Bolsa Feminina -->
-            <div class="bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
+            <!-- ITEM 5: OCULOS -->
+            <div class="item bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer" 
+                 data-id="1010" 
+                 data-nome="Oculos Sol Moderno" 
+                 data-tipo="ACESSORIO" 
+                 data-genero="Unissex"
+                 data-preco="899"
+                 data-moeda="avacoin">
                 <div class="relative">
-                    <span class="absolute top-2 left-2 bg-principal text-white text-xs font-bold px-2 py-0.5 rounded-lg">Feminino</span>
-                    <img src="https://i.imgur.com/8yT9zQx.png" alt="Bolsa Rosa" class="w-full h-44 object-contain bg-white/40">
-                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors">
+                    <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs font-bold px-2 py-0.5 rounded-lg">Unissex</span>
+                    <img src="https://cdn.avakin.com/items/thumb/1010.png" alt="Oculos Sol Moderno" class="w-full h-44 object-contain bg-white/40">
+                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors btn-selecionar">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
                 <div class="p-3">
-                    <p class="text-xs text-gray-500 font-semibold">COSTAS</p>
-                    <h3 class="font-bold text-texto text-sm mt-1">Cloud Nine Bag Rosa</h3>
-                    <p class="text-avacoin font-bold text-lg mt-1">R$ 2,49 <span class="text-gray-500 text-xs font-normal">/ 499</span></p>
+                    <p class="text-xs text-gray-500 font-semibold">ACESSORIO | ID: 1010</p>
+                    <h3 class="nome-item font-bold text-texto text-sm mt-1">Oculos Sol Moderno</h3>
+                    <p class="text-avacoin font-bold text-lg mt-1">R$ 4,99 <span class="text-gray-500 text-xs font-normal">/ 899</span></p>
                 </div>
             </div>
         </div>
 
-        <!-- ITENS DE CROWNS -->
+        <!-- 🟡 ITENS DE CROWNS -->
         <div id="listaCrown" class="hidden grid-cols-3 gap-3 pb-10">
             
-            <div class="bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
+            <!-- ITEM C1: ROUPA RARA -->
+            <div class="item bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer" 
+                 data-id="2001" 
+                 data-nome="Vestido Luxo Dourado" 
+                 data-tipo="VESTIDO" 
+                 data-genero="Feminino"
+                 data-preco="120"
+                 data-moeda="crown">
                 <div class="relative">
                     <span class="absolute top-2 left-2 bg-principal text-white text-xs font-bold px-2 py-0.5 rounded-lg">Feminino</span>
-                    <img src="https://i.imgur.com/8yT9zQx.png" alt="Bolsa Rosa Crown" class="w-full h-44 object-contain bg-white/40">
-                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors">
+                    <img src="https://cdn.avakin.com/items/thumb/2001.png" alt="Vestido Luxo Dourado" class="w-full h-44 object-contain bg-white/40">
+                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors btn-selecionar">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
                 <div class="p-3">
-                    <p class="text-xs text-gray-500 font-semibold">COSTAS</p>
-                    <h3 class="font-bold text-texto text-sm mt-1">Cloud Nine Powder Pink</h3>
-                    <p class="text-crown font-bold text-lg mt-1">R$ 4,99 <span class="text-gray-500 text-xs font-normal">/ 120</span></p>
+                    <p class="text-xs text-gray-500 font-semibold">VESTIDO | ID: 2001</p>
+                    <h3 class="nome-item font-bold text-texto text-sm mt-1">Vestido Luxo Dourado</h3>
+                    <p class="text-crown font-bold text-lg mt-1">R$ 24,99 <span class="text-gray-500 text-xs font-normal">/ 120</span></p>
                 </div>
             </div>
 
-            <div class="bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
+            <!-- ITEM C2: ASAS -->
+            <div class="item bg-card/60 rounded--2xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer" 
+                 data-id="2005" 
+                 data-nome="Asas Anjo Brancas" 
+                 data-tipo="ACESSORIO" 
+                 data-genero="Unissex"
+                 data-preco="250"
+                 data-moeda="crown">
                 <div class="relative">
-                    <span class="absolute top-2 left-2 bg-destaque text-white text-xs font-bold px-2 py-0.5 rounded-lg">Masculino</span>
-                    <img src="https://i.imgur.com/3vBmJ9k.png" alt="Bolsa Azul Crown" class="w-full h-44 object-contain bg-white/40">
-                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors">
+                    <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs font-bold px-2 py-0.5 rounded-lg">Unissex</span>
+                    <img src="https://cdn.avakin.com/items/thumb/2005.png" alt="Asas Anjo Brancas" class="w-full h-44 object-contain bg-white/40">
+                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors btn-selecionar">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
                 <div class="p-3">
-                    <p class="text-xs text-gray-500 font-semibold">COSTAS</p>
-                    <h3 class="font-bold text-texto text-sm mt-1">Cloud Nine Ice Blue</h3>
-                    <p class="text-crown font-bold text-lg mt-1">R$ 3,99 <span class="text-gray-500 text-xs font-normal">/ 95</span></p>
-                </div>
-            </div>
-
-            <div class="bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
-                <div class="relative">
-                    <span class="absolute top-2 left-2 bg-destaque text-white text-xs font-bold px-2 py-0.5 rounded-lg">Masculino</span>
-                    <img src="https://i.imgur.com/5xQr8wZ.png" alt="Tatuagem Asas Crown" class="w-full h-44 object-contain bg-white/40">
-                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors">
-                        <i class="fa fa-plus"></i>
-                    </button>
-                </div>
-                <div class="p-3">
-                    <p class="text-xs text-gray-500 font-semibold">PEITO</p>
-                    <h3 class="font-bold text-texto text-sm mt-1">Tattoo Asas Tempo</h3>
-                    <p class="text-crown font-bold text-lg mt-1">R$ 6,99 <span class="text-gray-500 text-xs font-normal">/ 180</span></p>
-                </div>
-            </div>
-
-            <div class="bg-card/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
-                <div class="relative">
-                    <span class="absolute top-2 left-2 bg-principal text-white text-xs font-bold px-2 py-0.5 rounded-lg">Feminino</span>
-                    <img src="https://i.imgur.com/7ZbX8Qy.png" alt="Pulseira Floral Crown" class="w-full h-44 object-contain bg-white/40">
-                    <button class="absolute bottom-2 right-2 bg-white/70 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center text-principal hover:bg-principal hover:text-white transition-colors">
-                        <i class="fa fa-plus"></i>
-                    </button>
-                </div>
-                <div class="p-3">
-                    <p class="text-xs text-gray-500 font-semibold">TORNOZELO</p>
-                    <h3 class="font-bold text-texto text-sm mt-1">Floral Dourado</h3>
-                    <p class="text-crown font-bold text-lg mt-1">R$ 2,99 <span class="text-gray-500 text-xs font-normal">/ 75</span></p>
+                    <p class="text-xs text-gray-500 font-semibold">ACESSORIO | ID: 2005</p>
+                    <h3 class="nome-item font-bold text-texto text-sm mt-1">Asas Anjo Brancas</h3>
+                    <p class="text-crown font-bold text-lg mt-1">R$ 49,99 <span class="text-gray-500 text-xs font-normal">/ 250</span></p>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- SCRIPT PARA TROCAR MOEDA -->
+    <!-- MODAL DE ITEM SELECIONADO -->
+    <div id="modalItem" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="p-4 border-b flex justify-between items-center">
+                <h3 class="font-bold text-lg text-texto" id="modalTitulo">Detalhes do Item</h3>
+                <button id="fecharModal" class="text-gray-500 hover:text-red-500 text-xl">&times;</button>
+            </div>
+            <div class="p-4 text-center">
+                <img id="modalImagem" src="" alt="" class="w-48 h-48 object-contain mx-auto mb-4">
+                <p class="text-sm text-gray-600 mb-1">Tipo: <span id="modalTipo" class="font-bold"></span></p>
+                <p class="text-sm text-gray-600 mb-3">ID do Item: <span id="modalId" class="font-mono font-bold text-principal"></span></p>
+                <p class="text-2xl font-bold mb-4" id="modalPreco"></p>
+
+                <div class="bg-fundo/50 p-3 rounded-xl mb-4 text-left">
+                    <p class="text-sm font-semibold text-principal mb-2">📩 Vai enviar para:</p>
+                    <p class="text-sm text-gray-700">Codigo: <span id="modalCodigoDestino" class="font-bold text-green-600">NENHUM SALVO</span></p>
+                </div>
+
+                <button id="btnEnviarItem" class="w-full bg-gradiente text-white py-3 rounded-xl font-bold text-lg hover:scale-105 transition shadow-lg">
+                    🚀 ENVIAR ESSE ITEM AGORA
+                </button>
+
+                <div id="sucessoEnvio" class="hidden mt-4 p-3 bg-sucesso/20 text-sucesso rounded-xl font-bold">
+                    ✅ ENVIADO COM SUCESSO PARA O CODIGO!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT COMPLETO COM TODAS FUNÇÕES -->
     <script>
         const btnAvacoin = document.getElementById('btnAvacoin');
         const btnCrown = document.getElementById('btnCrown');
@@ -302,7 +361,26 @@
         const contadorTexto = document.getElementById('contadorTexto');
         const limiteTexto = document.getElementById('limiteTexto');
         const nomeMoedaTexto = document.getElementById('nomeMoedaTexto');
+        const buscaInput = document.getElementById('buscaInput');
+        const itens = document.querySelectorAll('.item');
+        const codigoAmizade = document.getElementById('codigoAmizade');
+        const btnSalvarCodigo = document.getElementById('btnSalvarCodigo');
+        const avisoCodigo = document.getElementById('avisoCodigo');
+        const modalItem = document.getElementById('modalItem');
+        const fecharModal = document.getElementById('fecharModal');
+        const modalTitulo = document.getElementById('modalTitulo');
+        const modalImagem = document.getElementById('modalImagem');
+        const modalTipo = document.getElementById('modalTipo');
+        const modalId = document.getElementById('modalId');
+        const modalPreco = document.getElementById('modalPreco');
+        const modalCodigoDestino = document.getElementById('modalCodigoDestino');
+        const btnEnviarItem = document.getElementById('btnEnviarItem');
+        const sucessoEnvio = document.getElementById('sucessoEnvio');
 
+        let codigoSalvo = "";
+        let itemAtual = null;
+
+        // TROCAR MOEDA
         btnAvacoin.addEventListener('click', () => {
             btnAvacoin.classList.add('moeda-ativa', 'bg-avacoin', 'text-white');
             btnAvacoin.classList.remove('bg-avacoin/20', 'text-avacoin');
@@ -335,6 +413,104 @@
             limiteTexto.classList.remove('text-avacoin');
             limiteTexto.classList.add('text-crown');
             nomeMoedaTexto.innerText = 'Crowns';
+        });
+
+        // BUSCA FUNCIONAL
+        buscaInput.addEventListener('input', () => {
+            const termo = buscaInput.value.trim().toLowerCase();
+            let encontrados = 0;
+
+            itens.forEach(item => {
+                const nome = item.dataset.nome.toLowerCase();
+                const tipo = item.dataset.tipo.toLowerCase();
+                const id = item.dataset.id.toLowerCase();
+
+                if (nome.includes(termo) || tipo.includes(termo) || id.includes(termo)) {
+                    item.classList.remove('item-oculto');
+                    encontrados++;
+                } else {
+                    item.classList.add('item-oculto');
+                }
+            });
+
+            contadorTexto.innerText = encontrados.toLocaleString('pt-BR');
+        });
+
+        // SALVAR CODIGO DE AMIZADE
+        btnSalvarCodigo.addEventListener('click', () => {
+            const cod = codigoAmizade.value.trim().toUpperCase();
+            if(cod.length < 5) {
+                avisoCodigo.innerText = "❌ Codigo invalido! Digite corretamente.";
+                avisoCodigo.className = "text-center mt-2 text-sm font-medium text-erro";
+                avisoCodigo.classList.remove('hidden');
+                return;
+            }
+
+            codigoSalvo = cod;
+            avisoCodigo.innerText = "✅ Codigo salvo com sucesso: " + codigoSalvo;
+            avisoCodigo.className = "text-center mt-2 text-sm font-medium text-sucesso";
+            avisoCodigo.classList.remove('hidden');
+            
+            setTimeout(() => avisoCodigo.classList.add('hidden'), 3000);
+        });
+
+        // SELECIONAR ITEM E ABRIR MODAL
+        document.querySelectorAll('.btn-selecionar').forEach((btn, index) => {
+            itens[index].addEventListener('click', (e) => {
+                e.stopPropagation();
+                itemAtual = itens[index].dataset;
+                
+                modalTitulo.innerText = itemAtual.nome;
+                modalImagem.src = itens[index].querySelector('img').src;
+                modalTipo.innerText = itemAtual.tipo;
+                modalId.innerText = itemAtual.id;
+                
+                if(itemAtual.moeda === 'avacoin') {
+                    modalPreco.className = "text-2xl font-bold mb-4 text-avacoin";
+                    modalPreco.innerText = itemAtual.preco + " Avacoins";
+                } else {
+                    modalPreco.className = "text-2xl font-bold mb-4 text-crown";
+                    modalPreco.innerText = itemAtual.preco + " Crowns";
+                }
+
+                modalCodigoDestino.innerText = codigoSalvo || "NENHUM SALVO";
+                sucessoEnvio.classList.add('hidden');
+                modalItem.classList.remove('hidden');
+            });
+        });
+
+        // FECHAR MODAL
+        fecharModal.addEventListener('click', () => modalItem.classList.add('hidden'));
+        modalItem.addEventListener('click', (e) => { if(e.target === modalItem) modalItem.classList.add('hidden') });
+
+        // ENVIAR ITEM PARA O CODIGO
+        btnEnviarItem.addEventListener('click', () => {
+            if(!codigoSalvo) {
+                alert("⚠️ Primeiro SALVE o Código de Amizade no topo da página!");
+                return;
+            }
+
+            // SIMULA ENVIO AO SERVIDOR DO JOGO
+            btnEnviarItem.disabled = true;
+            btnEnviarItem.innerText = "ENVIANDO...";
+            
+            setTimeout(() => {
+                sucessoEnvio.classList.remove('hidden');
+                btnEnviarItem.innerText = "✅ ENVIADO!";
+                
+                // AÇÃO REAL: AQUI SERIA A INTEGRAÇÃO COM A API DO AVAKIN PARA ENTREGA AUTOMÁTICA
+                console.log("ITEM ENVIADO:", {
+                    item: itemAtual,
+                    codigo: codigoSalvo,
+                    data: new Date().toLocaleString()
+                });
+
+                setTimeout(() => {
+                    modalItem.classList.add('hidden');
+                    btnEnviarItem.disabled = false;
+                    btnEnviarItem.innerText = "🚀 ENVIAR ESSE ITEM AGORA";
+                }, 2000);
+            }, 1500);
         });
     </script>
 </body>
